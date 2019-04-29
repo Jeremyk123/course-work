@@ -84,9 +84,6 @@ public static void mainMenu(Inventory[] invArray)
 // display inv
 public static void displayInv( Inventory[ ] invArray )
 {
-	System.out.println ( "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" );
-	System.out.println ( "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" );
-	System.out.println ( "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" );
 
 	System.out.println ("======================== Butcher Shop ========================" );
 	System.out.println ( "item# 	name 	    price      quantity      weight      pricelbs" );
@@ -152,22 +149,21 @@ public static double buyItem(Inventory[] invArray)
 	family = inputFamily.nextInt ( );
 	//handle multiple customers in a group
 	do {
-	
-	System.out.println ( "Group Member: " + family );
-	
 	//handle buying items
 	do
 	{
 		
 		//get user item choice
 		Inventory.displayInv ( invArray );
-		System.out.println ( "Enter the number of the item you would like to buy." );
+		System.out.println ( "Family member " + family + "| Enter number of item to buy or type 0 to exit:\n" );
 		Scanner inputItem = new Scanner(System.in);
-		
 		//remove one from itemchoice to match index of array instead of what is displayd to user
 		inputItemNum = inputItem.nextInt ( );
 		inputItemNum -= 1;
 		
+		if (inputItemNum == -1){
+			break;
+		}
 		//check if there is stock
 		if (invArray[inputItemNum].getQuantity ( ) == 0)
 		{
@@ -199,10 +195,6 @@ public static void managerMenu()
 
 	String passVar;
 	do {
-		System.out.println ( "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" );
-		System.out.println ( "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" );
-		System.out.println ( "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" );
-
 		System.out.print( "Please enter the password or type exit, to return to the main menu:\n " );
 		Scanner inputPassVar = new Scanner(System.in);
 		passVar = inputPassVar.next( );
