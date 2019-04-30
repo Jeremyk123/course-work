@@ -5,8 +5,11 @@ import java.lang.Math;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
+import java.io.BufferedWriter;
 
 public class Inventory
 {
@@ -55,7 +58,7 @@ public static String toPrint(Inventory[] invArray){//overriding the toString() m
 
 
 // main  menu
-public static void mainMenu(Inventory[] invArray) throws FileNotFoundException
+public static void mainMenu(Inventory[] invArray) throws Exception
 {
 	
 	Scanner inputChoice = new Scanner ( System.in );
@@ -201,78 +204,96 @@ public static double buyItem(Inventory[] invArray)
 	return familyTotal;
 }
 
-
-//allows users in manager menu to buy stock for 
-public static void addInventory(Inventory[ ] invArray) throws FileNotFoundException
+public static void reWrite(Inventory[] invArray) throws IOException
 {
-
-	Scanner readFile = new Scanner ( new File ( "inventoryFile2.txt" ) );
-	PrintWriter writeFile = new PrintWriter(new File("inventoryFile2.txt"));
-	
-	//choose item for stock to be added to
-	System.out.println("Please enter what the number of the item you would like to add to:\n");
-	Scanner inputItem = new Scanner(System.in);
-	int c = (inputItem.nextInt()) - 1;
-	int i = 0;
-	
-	//enter amount to buy, calc/output cost
-	System.out.println("How many would you like to add?:\n");
-	Scanner inputItemAmount = new Scanner(System.in);
-	int amount = inputItemAmount.nextInt();
-	double cost = invArray[c].getPrice() * amount;
-	System.out.printf("You have spent: $%4.4s\n", cost);
-
-	
-	while ( readFile.hasNextLine ( ) )
+	BufferedWriter reWrite = new BufferedWriter(new FileWriter("inventoryFile2.txt"));
+	for ( int i = 0; i <= invArray.length; i++ )
 	{
-		String oneline = readFile.nextLine ( );
-		String[ ] attrib = oneline.split ( " " );
-
-		Inventory inv = new Inventory ( );
-
-		inv.setName ( attrib[0] );
-		inv.setPrice ( Double.parseDouble ( attrib[1] ) );
-		inv.setQuantity ( Integer.parseInt ( attrib[2] ) );
-		inv.setWeight ( Double.parseDouble ( attrib[3] ) );
-		inv.setPriceWeight ( Double.parseDouble ( attrib[4] ) );
-		
-		if (i == c)
+		if ( invArray[i] == null )
 		{
-			inv.setQuantity(inv.getQuantity() + amount);
+			break;
 		}
-		
-		
-
-		
-		// Inventory item = new Inventory ( token, price, quantity, weight );
-		invArray[i] = inv;
-		
-		writeFile.print( attrib[0] );
-		writeFile.print(" ");
-		writeFile.print( Double.parseDouble ( attrib[1] ) );
-		writeFile.print(" ");
-		writeFile.print( Integer.parseInt ( attrib[2] ) );
-		writeFile.print(" ");
-		writeFile.print( Double.parseDouble ( attrib[3] ) );
-		writeFile.print(" ");
-		writeFile.print( Double.parseDouble ( attrib[4] ) );
-		writeFile.print("\n");
-		
-		i++;
-
+		String token = (invArray[i].getName ( )+ " " + invArray[i].getPrice ( )+ " " + invArray[i].getQuantity ( ) + " " +
+				invArray[i].getWeight() + " " +invArray[i].getPriceWeight ( ) );
+   //  System.out.println ( token );
+	   reWrite.write ( token );
+	   reWrite.newLine ( );
 	}
-	
-	// closing the file
-	readFile.close ( );
-	writeFile.close();
-
-
-	
-
+	reWrite.close ( );
 	
 }
 
-public static void managerMenu(Inventory[] invArray) throws FileNotFoundException
+//allows users in manager menu to buy stock for 
+//public static void addInventory(Inventory[ ] invArray) throws FileNotFoundException
+//{
+//
+//	Scanner readFile = new Scanner ( new File ( "inventoryFile2.txt" ) );
+//	PrintWriter writeFile = new PrintWriter(new File("inventoryFile2.txt"));
+//	
+//	//choose item for stock to be added to
+//	System.out.println("Please enter what the number of the item you would like to add to:\n");
+//	Scanner inputItem = new Scanner(System.in);
+//	int choice = (inputItem.nextInt()) - 1;
+//	int i = 0;
+//	
+//	//enter amount to buy, calc/output cost
+//	System.out.println("How many would you like to add?:\n");
+//	Scanner inputItemAmount = new Scanner(System.in);
+//	int amount = inputItemAmount.nextInt();
+//	double cost = invArray[choice].getPrice() * amount;
+//	System.out.printf("You have spent: $%4.4s\n", cost);
+//
+//	
+//	while ( readFile.hasNextLine ( ) )
+//	{
+//		String oneline = readFile.nextLine ( );
+//		String[ ] attrib = oneline.split ( " " );
+//
+//		Inventory inv = new Inventory ( );
+//
+//		inv.setName ( attrib[0] );
+//		inv.setPrice ( Double.parseDouble ( attrib[1] ) );
+//		inv.setQuantity ( Integer.parseInt ( attrib[2] ) );
+//		inv.setWeight ( Double.parseDouble ( attrib[3] ) );
+//		inv.setPriceWeight ( Double.parseDouble ( attrib[4] ) );
+//		
+//		if (i == choice)
+//		{
+//			inv.setQuantity(inv.getQuantity() + amount);
+//		}
+//		
+//		
+//
+//		
+//		// Inventory item = new Inventory ( token, price, quantity, weight );
+//		invArray[i] = inv;
+//		
+//		writeFile.print( attrib[0] );
+//		writeFile.print(" ");
+//		writeFile.print( Double.parseDouble ( attrib[1] ) );
+//		writeFile.print(" ");
+//		writeFile.print( Integer.parseInt ( attrib[2] ) );
+//		writeFile.print(" ");
+//		writeFile.print( Double.parseDouble ( attrib[3] ) );
+//		writeFile.print(" ");
+//		writeFile.print( Double.parseDouble ( attrib[4] ) );
+//		writeFile.print("\n");
+//		
+//		i++;
+//
+//	}
+//	
+//	// closing the file
+//	readFile.close ( );
+//	writeFile.close();
+//
+//
+//	
+//
+//	
+//}
+
+public static void managerMenu(Inventory[] invArray) throws Exception
 {
 
 	String passVar;
@@ -280,11 +301,33 @@ public static void managerMenu(Inventory[] invArray) throws FileNotFoundExceptio
 		System.out.print( "Please enter the password or type exit, to return to the main menu:\n" );
 		Scanner inputPassVar = new Scanner(System.in);
 		passVar = inputPassVar.next( );
+		
+//when pass is correct		
 if (passVar.equals ( "password123" ))
 {
 	System.out.println ( "Lost sales: " + Inventory.getLostSales() + 
 			"\nAmount of lost Sales: " + Inventory.getLostSalesAmt ( ) );
-	Inventory.addInventory(invArray);
+	
+	
+	//choose item for stock to be added to
+	System.out.println("Please enter what the number of the item you would like to add to:\n");
+	Scanner inputItem = new Scanner(System.in);
+	int choice = (inputItem.nextInt()) - 1;
+	
+	//enter amount to buy, calc/output cost
+	System.out.println("How many would you like to add?:\n");
+	Scanner inputItemAmount = new Scanner(System.in);
+	int amount = inputItemAmount.nextInt();
+	
+	invArray[choice].setQuantity ( invArray[choice].getQuantity ( ) + amount );
+	
+	reWrite(invArray);
+	
+	double cost = invArray[choice].getPrice() * amount;
+	System.out.printf("You have spent: $%4.4s\n", cost);
+	
+	
+	
 
 	break;
 }

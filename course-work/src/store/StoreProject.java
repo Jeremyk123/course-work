@@ -15,7 +15,7 @@ import java.util.Scanner;
 public class StoreProject
 {
 
-	public static void main( String[ ] args ) throws FileNotFoundException
+	public static void main( String[ ] args ) throws Exception
 	{
 
 		// Create an array of with size of twenty (Inventory)
