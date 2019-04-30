@@ -9,6 +9,7 @@ package store;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class StoreProject
@@ -23,9 +24,9 @@ public class StoreProject
 
 		// Reading In File
 
-		Scanner readFile = new Scanner ( new File ( "inventoryFile.txt" ) );
+		Scanner readFile = new Scanner ( new File ( "inventoryFile2.txt" ) );
 
-		// PrintWriter writeFile = new PrintWriter(new File("inventoryFile.txt"));
+
 		int i = 0;
 		while ( readFile.hasNextLine ( ) )
 		{
@@ -39,13 +40,14 @@ public class StoreProject
 			inv.setQuantity ( Integer.parseInt ( attrib[2] ) );
 			inv.setWeight ( Double.parseDouble ( attrib[3] ) );
 			inv.setPriceWeight ( Double.parseDouble ( attrib[4] ) );
-
+			
+			
 			// Inventory item = new Inventory ( token, price, quantity, weight );
 			invArray[i] = inv;
 			i++;
 
 		}
-
+		
 		// closing the file
 		readFile.close ( );
 
@@ -53,4 +55,5 @@ public class StoreProject
 		// Main
 		Inventory.mainMenu ( invArray );
 	}
+
 }
