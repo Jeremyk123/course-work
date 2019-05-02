@@ -1,7 +1,7 @@
 /* Author: Jeremy Kimball
  * Date: 4/8/2019
  * Class: CSC 160 Combo
- * Assignment: Store Project / Creating a POS system for a butcher shop
+ * Assignment: Store Project / Creating a POS system for a butcher shop, using methods such as writing to file, implementing a linked list, further work with classes, using array of objects
  */
 
 package store;
@@ -12,21 +12,19 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
-public class StoreProject
-{
+public class StoreProject {
 
-	public static void main( String[ ] args ) throws Exception
-	{
+	public static void main(String[] args) throws Exception {
 
 		// Create an array of with size of twenty (Inventory)
-		Inventory[ ] invArray = new Inventory[20];
+		Inventory[] invArray = new Inventory[20];
 
 		// Reading In File
-		Inventory.readInFile( invArray );
+		Inventory.readInFile(invArray);
 
 		// Main
-		Inventory.mainMenu ( invArray );
-		
+		Inventory.mainMenu(invArray);
+
 	}
 
 }
