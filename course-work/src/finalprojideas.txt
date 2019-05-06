@@ -1,0 +1,4 @@
+Loop with counter checking horizontal, if hits non X reset counter, outside of loop iterate on starting position
+same for vertical
+
+seperate checkers for both O and X so that can be used immediately after player places piece
