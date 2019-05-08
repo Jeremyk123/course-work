@@ -3,25 +3,27 @@ package finalproject;
 public class FinalProjectMethods {
 	
 	
-	static char[][] gameBoard = new char[6][7];
+	static char[][] connect4 = new char[6][7];
+	final static int COLUMN = 7;
 	
 	public static void main(String[] args)
 	{
-		gameBoard[1][0] = 'Y';
-		gameBoard[2][0] = 'Y';
-		gameBoard[3][0] = 'Y';
-		gameBoard[4][0] = 'Y';
-		
+		connect4[1][0] = 'Y';
+		connect4[2][0] = 'Y';
+		connect4[3][0] = 'Y';
+		connect4[4][0] = 'Y';
+		System.out.println ( connect4[5][6] );
 		System.out.println(checkR());
-		
+
 		System.out.println(checkY());
 		
 	}
 	
 	
 	
+
 	//check player 'R' return true/false if winning pattern found
-	public static boolean checkR()
+	public static boolean checkR() //Jeremy
 	{
 		if (checkRHoriz() || checkRVert())
 		{
@@ -32,7 +34,7 @@ public class FinalProjectMethods {
 	}
 	
 	
-	public static boolean checkRHoriz()
+	public static boolean checkRHoriz() //Jeremy
 	{
 		boolean win = false;
 		int count = 0;
@@ -46,7 +48,7 @@ public class FinalProjectMethods {
 				//iterate through columns (c)
 				for( int c = 0; 7 > c; c++)
 				{
-					if(gameBoard[r][c] == 'R')
+					if(connect4[r][c] == 'R')
 					{
 						//when a 'R' character is found start counting
 						count++;
@@ -71,7 +73,8 @@ public class FinalProjectMethods {
 		return win;
 		
 	}
-	public static boolean checkRVert()
+	
+	public static boolean checkRVert() //Jeremy
 	{
 		boolean win = false;
 		int count = 0;
@@ -85,7 +88,7 @@ public class FinalProjectMethods {
 				//iterate through rows (r)
 				for( int r = 0; 6 > r; r++)
 				{
-					if(gameBoard[r][c] == 'R')
+					if(connect4[r][c] == 'R')
 					{
 						//when a 'R' character is found start counting
 						count++;
@@ -111,11 +114,11 @@ public class FinalProjectMethods {
 		
 	}
 	
-	public static void checkRDiagUp()
+	public static void checkRDiagUp() //Jeremy
 	{
 		
 	}
-	public static void checkRDiagDown()
+	public static void checkRDiagDown() //Jeremy
 	{
 		
 	}
@@ -124,7 +127,7 @@ public class FinalProjectMethods {
 	
 	
 	//Check Player 'Y' return true/false if winning pattern found
-	public static boolean checkY()
+	public static boolean checkY() //Jeremy
 	{
 		if (checkYHoriz() || checkYVert())
 		{
@@ -137,7 +140,7 @@ public class FinalProjectMethods {
 	
 	
 	
-	public static boolean checkYHoriz()
+	public static boolean checkYHoriz() //Jeremy
 	{
 		boolean win = false;
 		int count = 0;
@@ -151,7 +154,7 @@ public class FinalProjectMethods {
 				//iterate through columns (c)
 				for( int c = 0; 7 > c; c++)
 				{
-					if(gameBoard[r][c] == 'Y')
+					if(connect4[r][c] == 'Y')
 					{
 						//when a 'R' character is found start counting
 						count++;
@@ -176,7 +179,7 @@ public class FinalProjectMethods {
 		return win;
 	}
 	
-	public static boolean checkYVert()
+	public static boolean checkYVert() //Jeremy
 	{
 		boolean win = false;
 		int count = 0;
@@ -190,7 +193,7 @@ public class FinalProjectMethods {
 				//iterate through rows (r)
 				for( int r = 0; 6 > r; r++)
 				{
-					if(gameBoard[r][c] == 'Y')
+					if(connect4[r][c] == 'Y')
 					{
 						//when a 'R' character is found start counting
 						count++;
@@ -218,11 +221,11 @@ public class FinalProjectMethods {
 		
 	
 	
-	public static void checkYDiagUp()
+	public static void checkYDiagUp() //Jeremy
 	{
 		
 	}
-	public static void checkYDiagDown()
+	public static void checkYDiagDown() //Jeremy
 	{
 		
 	}
